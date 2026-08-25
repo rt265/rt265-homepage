@@ -1,11 +1,10 @@
 ---
 // Import the global.css file here so that it is included on
 // all pages through the use of the <BaseHead /> component.
-import '../styles/global.css';
-import type { ImageMetadata } from 'astro';
-import FallbackImage from '../assets/blog-placeholder-1.jpg';
-import { SITE_TITLE } from '../consts';
-import { Font } from 'astro:assets';
+import "../styles/global.css";
+import type { ImageMetadata } from "astro";
+import FallbackImage from "../assets/blog-placeholder-1.jpg";
+import { Font } from "astro:assets";
 
 interface Props {
 	title: string;
@@ -22,17 +21,11 @@ const { title, description, image = FallbackImage } = Astro.props;
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="icon" href="/favicon.ico" />
 <link rel="sitemap" href="/sitemap-index.xml" />
-<link
-	rel="alternate"
-	type="application/rss+xml"
-	title={SITE_TITLE}
-	href={new URL('rss.xml', Astro.site)}
-/>
 <meta name="generator" content={Astro.generator} />
 
 <Font cssVariable="--font-geist" preload />
+<Font cssVariable="--font-jetbrains-mono" preload />
 
 <!-- Canonical URL -->
 <link rel="canonical" href={canonicalURL} />
@@ -50,3 +43,48 @@ const { title, description, image = FallbackImage } = Astro.props;
 
 <!-- Twitter -->
 <meta name="twitter:card" content="summary_large_image" />
+
+<!-- 主题初始化：默认自动跟随系统浅/暗色偏好，可被手动设置覆盖 -->
+<script is:inline>
+	(function () {
+		const STORAGE_KEY = "theme";
+
+		function readStored() {
+			try {
+				return localStorage.getItem(STORAGE_KEY);
+			} catch (e) {
+				return null;
+			}
+		}
+
+		function applyTheme() {
+			const stored = readStored();
+			const mode =
+				stored === "light" || stored === "dark" ? stored : "system";
+			const isDark =
+				mode === "dark" ||
+				(mode === "system" &&
+					window.matchMedia("(prefers-color-scheme: dark)").matches);
+			document.documentElement.classList.toggle("dark", isDark);
+		}
+
+		// 在 body 渲染前应用主题，避免闪烁（FOUC）
+		applyTheme();
+
+		// 系统浅/暗偏好变化时，仅在「跟随系统」模式下自动切换
+		window
+			.matchMedia("(prefers-color-scheme: dark)")
+			.addEventListener("change", () => {
+				const stored = readStored();
+				if (!stored || stored === "system") applyTheme();
+			});
+
+		// 暴露给切换按钮：接受 "light" | "dark" | "system"
+		window.__setTheme = function (value) {
+			try {
+				localStorage.setItem(STORAGE_KEY, value);
+			} catch (e) {}
+			applyTheme();
+		};
+	})();
+</script>

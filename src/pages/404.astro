@@ -1,0 +1,34 @@
+---
+import Header from "../components/Header.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+---
+
+<!doctype html>
+<html lang="zh-Hans">
+    <head>
+        <BaseHead title="404" description="Page not found here" />
+    </head>
+    <body>
+        <Header />
+        <main>
+            <h1>:(</h1>
+            <h2>404 - 页面未找到</h2>
+
+            <p>抱歉，你访问的页面不存在。</p>
+            <p>
+                我将博客从主域名转移到了子域名 <code>blog</code
+                >，因此你可能访问了旧的 URL。
+            </p>
+            <p>
+                如你想查看我的博客文章，请访问<a
+                    href="https://blog.watermelonabc.top">这里</a
+                >，或者将域名由 <code>watermelonabc.top</code> 更改为<code
+                    >blog.watermelonabc.top</code
+                >
+            </p>
+            <p>造成不便，敬请谅解 X^X</p>
+        </main>
+        <Footer />
+    </body>
+</html>

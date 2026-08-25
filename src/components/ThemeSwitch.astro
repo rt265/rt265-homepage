@@ -1,0 +1,60 @@
+---
+import { Icon } from "astro-icon/components";
+---
+
+<button id="themeToggle" aria-label="Toggle theme">
+    <Icon name="tabler:sun-moon" />
+</button>
+
+<style>
+    #themeToggle {
+        border: 0;
+        background: none;
+    }
+    .sun {
+        fill: black;
+    }
+    .moon {
+        fill: transparent;
+    }
+
+    :global(.dark) .sun {
+        fill: transparent;
+    }
+    :global(.dark) .moon {
+        fill: white;
+    }
+    [data-icon] {
+        width: 2em;
+        height: 2em;
+    }
+</style>
+
+<script is:inline>
+    const STORAGE_KEY = "theme";
+
+    const readStored = () => {
+        try {
+            return localStorage.getItem(STORAGE_KEY);
+        } catch (e) {
+            return null;
+        }
+    };
+
+    // 三态循环：light -> dark -> system -> light
+    // 其中 system 为「自动跟随系统」模式
+    const handleToggleClick = () => {
+        const current = readStored() || "system";
+        const next =
+            current === "light"
+                ? "dark"
+                : current === "dark"
+                  ? "system"
+                  : "light";
+        window.__setTheme?.(next);
+    };
+
+    document
+        .getElementById("themeToggle")
+        ?.addEventListener("click", handleToggleClick);
+</script>

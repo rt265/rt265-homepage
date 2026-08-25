@@ -1,0 +1,136 @@
+---
+import Header from "../components/Header.astro";
+import BaseHead from "../components/BaseHead.astro";
+import Footer from "../components/Footer.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<!doctype html>
+<html lang="zh-Hans">
+	<head>
+		<BaseHead
+			title="Services"
+			description="List of Watermelonabc's services"
+		/>
+	</head>
+	<body>
+		<Header />
+		<main>
+			<h1>这里是我部署的服务</h1>
+			<ul class="service-cards">
+				<li class="card">
+					<a
+						href="https://blog.watermelonabc.top"
+						target="_blank"
+						rel="noopener"
+					>
+						<Icon name="tabler:writing" />
+						<span class="site-title">Hexo 博客</span>
+						<span class="site-link">blog.watermelonabc.top</span>
+					</a>
+				</li>
+				<li class="card">
+					<a
+						href="https://memos.watermelonabc.top/"
+						target="_blank"
+						rel="noopener"
+					>
+						<Icon name="tabler:notes" />
+						<span class="site-title">Memos</span>
+						<span class="site-link">memos.watermelonabc.top</span>
+					</a>
+				</li>
+				<li class="card">
+					<a
+						href="https://gitea.watermelonabc.top/"
+						target="_blank"
+						rel="noopener"
+					>
+						<Icon name="tabler:brand-git" />
+						<span class="site-title">Self-hosted Gitea</span>
+						<span class="site-link">gitea.watermelonabc.top</span>
+					</a>
+				</li>
+				<li class="card">
+					<a
+						href="https://pan.watermelonabc.top/"
+						target="_blank"
+						rel="noopener"
+					>
+						<Icon name="tabler:folder" />
+						<span class="site-title">Openlist</span>
+						<span class="site-link">pan.watermelonabc.top</span>
+					</a>
+				</li>
+			</ul>
+		</main>
+		<Footer />
+	</body>
+</html>
+
+<style>
+	/* 服务卡片：每行一张，从左到右为 icon / 标题 / 链接（居右） */
+	.service-cards {
+		list-style: none;
+		margin: 0;
+		padding: 0;
+		display: flex;
+		flex-direction: column;
+		gap: 1em;
+	}
+
+	.service-cards li {
+		background: #fff;
+		border: 1px solid rgb(var(--gray-light));
+		border-radius: 10px;
+		box-shadow: 0 1px 3px rgba(var(--gray), 20%);
+		overflow: hidden;
+		transition:
+			border-color 0.2s ease,
+			box-shadow 0.2s ease;
+	}
+
+	:global(.dark) .service-cards li {
+		background: #131722;
+	}
+
+	.service-cards li:hover {
+		border-color: var(--accent);
+		box-shadow: 0 2px 8px rgba(var(--gray), 30%);
+	}
+
+	.service-cards a {
+		display: flex;
+		align-items: center;
+		gap: 1em;
+		padding: 1em 1.25em;
+		text-decoration: none;
+		color: rgb(var(--gray-dark));
+	}
+
+	:global(.dark) .service-cards a {
+		color: rgb(var(--gray-dark));
+	}
+
+	.service-cards [data-icon] {
+		width: 1.75em;
+		height: 1.75em;
+		color: var(--accent);
+		flex-shrink: 0;
+	}
+
+	.service-cards .site-title {
+		font-weight: 700;
+		font-family: var(--font-geist);
+		color: rgb(var(--black));
+	}
+
+	.service-cards .site-link {
+		margin-left: auto;
+		color: rgb(var(--gray));
+		font-family: var(--font-jetbrains-mono);
+		font-size: 0.85em;
+		text-align: right;
+		word-break: break-all;
+	}
+</style>
