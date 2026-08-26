@@ -6,12 +6,14 @@ import { defineConfig, fontProviders } from "astro/config";
 
 import icon from "astro-icon";
 
+import playformCompress from "@playform/compress";
+
 // https://astro.build/config
 export default defineConfig({
   site: "https://watermelonabc.top",
   integrations: [mdx(), sitemap(), icon({
     iconDir: "src/assets/icons",
-  })],
+  }), playformCompress(),],
   fonts: [
     {
       provider: fontProviders.fontsource(),
