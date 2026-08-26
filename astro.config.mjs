@@ -9,7 +9,9 @@ import icon from "astro-icon";
 // https://astro.build/config
 export default defineConfig({
   site: "https://watermelonabc.top",
-  integrations: [mdx(), sitemap(), icon()],
+  integrations: [mdx(), sitemap(), icon({
+    iconDir: "src/assets/icons",
+  })],
   fonts: [
     {
       provider: fontProviders.fontsource(),

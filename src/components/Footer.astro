@@ -5,6 +5,7 @@ const today = new Date();
 <footer>
 	<p>追寻各色世界</p>
 	<p>&copy; {today.getFullYear()} Watermelonabc. All rights reserved.</p>
+	<p>Powered by <a href="https://astro.build/">Astro</a> & <a href="https://vercel.com/">Vercel</a></p>
 </footer>
 <style>
 	footer {
@@ -12,5 +13,8 @@ const today = new Date();
 		background: linear-gradient(var(--gray-gradient)) no-repeat;
 		color: rgb(var(--gray));
 		text-align: center;
+	}
+	footer p {
+		margin: 0.5em 0;
 	}
 </style>
