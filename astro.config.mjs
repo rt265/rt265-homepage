@@ -3,7 +3,7 @@
 import mdx from "@astrojs/mdx";
 import sitemap from "@astrojs/sitemap";
 import { defineConfig, fontProviders } from "astro/config";
-
+import swup from '@swup/astro';
 import icon from "astro-icon";
 
 import playformCompress from "@playform/compress";
@@ -13,7 +13,7 @@ export default defineConfig({
   site: "https://watermelonabc.top",
   integrations: [mdx(), sitemap(), icon({
     iconDir: "src/assets/icons",
-  }), playformCompress(),],
+  }), swup(), playformCompress(),],
   fonts: [
     {
       provider: fontProviders.fontsource(),

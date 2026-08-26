@@ -81,3 +81,28 @@ import ThemeSwitch from "./ThemeSwitch.astro";
 		}
 	}
 </style>
+<script>
+	// Header 位于 swup 的交换容器之外，页面切换后不会被重新渲染，
+	// 所以导航高亮（active）需要在前端根据当前路径动态更新。
+	const BASE_URL = import.meta.env.BASE_URL;
+
+	function syncActiveLinks() {
+		const pathname = location.pathname.replace(BASE_URL, "");
+		const subpath = pathname.match(/[^/]+/g);
+		const root = "/" + (subpath?.[0] || "");
+
+		document
+			.querySelectorAll<HTMLAnchorElement>("[data-nav-link]")
+			.forEach((a) => {
+				const href = a.getAttribute("href") ?? "/";
+				const isActive = href === pathname || href === root;
+				a.classList.toggle("active", isActive);
+			});
+	}
+
+	// 首次加载也同步一次，保证与 SSR 输出一致
+	syncActiveLinks();
+
+	// swup 完成页面内容替换后重新计算高亮
+	document.addEventListener("swup:page:view", syncActiveLinks);
+</script>
