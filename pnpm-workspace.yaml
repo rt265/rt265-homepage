@@ -5,7 +5,7 @@ allowBuilds:
 minimumReleaseAgeExclude:
   - "@rolldown/binding-darwin-x64@1.2.5"
   - "@rolldown/binding-linux-arm64-gnu@1.2.5"
-  - astro@7.2.6 || 7.2.7
+  - astro@7.2.6 || 7.2.7 || 7.2.10
   - '@img/sharp-darwin-arm64@0.35.4'
   - '@img/sharp-darwin-x64@0.35.4'
   - '@img/sharp-freebsd-wasm32@0.35.4'
@@ -33,3 +33,7 @@ minimumReleaseAgeExclude:
   - '@img/sharp-win32-ia32@0.35.4'
   - '@img/sharp-win32-x64@0.35.4'
   - sharp@0.35.4
+  - '@astrojs/internal-helpers@0.11.0'
+  - '@astrojs/markdown-satteri@0.4.0'
+  - '@astrojs/mdx@8.0.0'
+  - '@astrojs/sitemap@3.7.4'
