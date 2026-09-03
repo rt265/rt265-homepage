@@ -13,7 +13,7 @@ export default defineConfig({
   site: "https://watermelonabc.top",
   integrations: [mdx(), sitemap(), icon({
     iconDir: "src/assets/icons",
-  }), swup(), playformCompress(),],
+  }), swup({ theme: false, animationClass: false }), playformCompress(),],
   fonts: [
     {
       provider: fontProviders.fontsource(),
