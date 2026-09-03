@@ -16,13 +16,13 @@ export default defineConfig({
   }), swup({ theme: false, animationClass: false }), playformCompress(),],
   fonts: [
     {
-      provider: fontProviders.fontsource(),
+      provider: fontProviders.npm(),
       name: "Geist",
       cssVariable: "--font-geist",
       fallbacks: ["Noto Sans SC", "sans-serif"],
     },
     {
-      provider: fontProviders.fontsource(),
+      provider: fontProviders.npm(),
       name: "JetBrains Mono",
       cssVariable: "--font-jetbrains-mono",
       fallbacks: ["monospace"],
